@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Layout } from './layout/layout.component';
+import { Layout } from './layout/layout';
 import { PrimeNG } from 'primeng/config';
 
 @Component({

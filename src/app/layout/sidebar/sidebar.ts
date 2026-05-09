@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 
@@ -12,10 +11,9 @@ import { MenuItem } from 'primeng/api';
             </div>
             <p-menu [model]="items" styleClass="w-full border-none shadow-none" />
         </nav>
-        <router-outlet></router-outlet>
     `,
     standalone: true,
-    imports: [MenuModule, RouterOutlet]
+    imports: [MenuModule]
 })
 export class SideBar implements OnInit {
     items: MenuItem[] | undefined;
