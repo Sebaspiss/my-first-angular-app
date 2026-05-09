@@ -1,12 +1,20 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { Layout } from './layout/layout.component';
+import { PrimeNG } from 'primeng/config';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
+  imports: [Layout],
+  template: '<app-layout></app-layout>',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('my-first-angular-app');
+
+export class App implements OnInit {
+  protected readonly title = signal('dashboard-fintech');
+
+  constructor(private primeng: PrimeNG) {}
+
+  ngOnInit(): void {
+    this.primeng.ripple.set(true);
+  }  
 }
