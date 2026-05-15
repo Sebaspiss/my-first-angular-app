@@ -2,6 +2,7 @@
 
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
+@import "primeicons/primeicons.css";
 
 html, body {
   height: 100%;
@@ -10,9 +11,7 @@ html, body {
 }
 
 .layout {
-    display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
 .sidebar {
@@ -27,7 +26,6 @@ html, body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   min-width: 0;
 }
 
@@ -35,7 +33,11 @@ header {
     flex-shrink: 0;
 }
 
-main {
-  flex: 1;
-  overflow-y: auto;
+/* MENU ACCOUNT */
+p-tab.p-tab-active {
+  color: rgb(147 197 253);
+}
+
+p-tablist .p-tablist-active-bar {
+  background: rgb(147 197 253);
 }

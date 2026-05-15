@@ -1,0 +1,42 @@
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'userInfo',
+    templateUrl: './userInfo.html',
+    imports: []
+})
+
+export class UserInfo {/*
+    anagraficaForm!: FormGroup;
+
+  sessi = [
+    { label: 'Maschio', value: 'M' },
+    { label: 'Femmina', value: 'F' },
+    { label: 'Altro', value: 'A' }
+  ];
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.anagraficaForm = this.fb.group({
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
+      dataNascita: [null, Validators.required],
+      sesso: [null, Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefono: [''],
+      via: [''],
+      citta: [''],
+      cap: [''],
+      provincia: ['']
+    });
+  }
+
+  onSubmit() {
+    if (this.anagraficaForm.valid) {
+      console.log('Dati Anagrafica:', this.anagraficaForm.value);
+    } else {
+      this.anagraficaForm.markAllAsTouched();
+    }
+}
+*/}

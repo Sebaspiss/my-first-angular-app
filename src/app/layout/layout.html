@@ -1,4 +1,4 @@
-<div class="layout">
+<div class="h-screen w-screen flex">
     
     <aside class="sidebar">
         <app-sidebar></app-sidebar>
@@ -8,7 +8,7 @@
         <header>
             <app-topbar></app-topbar>       
         </header> 
-        <main>
+        <main class="bg-blue-300 overflow-auto">
             <router-outlet></router-outlet>
         </main>
     </div>

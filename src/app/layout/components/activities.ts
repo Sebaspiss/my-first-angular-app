@@ -3,25 +3,25 @@ import { Card } from "primeng/card";
 import { DividerModule } from "primeng/divider"
 
 @Component({
-    selector: "portfolio",
+    selector: "activities",
     template: `
-        <p-card header="Portfolio" class="w-full h-full">
+        <p-card header="Activities" class="w-full h-full">
             <p>1000.00 €</p>
             <div class="card">
             <p>
-                BITCOIN 30.000 €
+                Buy +10.000 €
             </p>
             <p-divider />
             <p>
-                MICROSOFT 2000 €
+                Sell -2000 €
             </p>
             <p-divider />
             <p>
-                AMAZON 4000 €
+                Buy +4000 €
             </p>
             <p-divider />
             <p>
-                ETHEREUM 10.000 €
+                Sell -10.000 €
             </p>
         </div>
     </p-card>
@@ -29,4 +29,4 @@ import { DividerModule } from "primeng/divider"
     imports: [Card,DividerModule]
 })
 
-export class Portfolio {}
+export class Activities {}

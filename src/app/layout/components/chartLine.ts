@@ -5,8 +5,8 @@ import { Card } from "primeng/card";
 @Component ({
     selector: "chartLine",
     template: `
-    <p-card header="Price" class="w-[800px] h-[400px]">
-            <p-chart type="line" [data]="data" [options]="options" class="h-[300px]" />
+    <p-card header="Price" class="w-full h-full">
+            <p-chart type="line" [data]="data" [options]="options" class="h-full" />
     </p-card>
     `,
     imports: [ChartModule, Card]
