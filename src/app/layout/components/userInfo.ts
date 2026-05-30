@@ -1,18 +1,22 @@
 import { Component } from "@angular/core";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
+import { DatePickerModule } from 'primeng/datepicker';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { Button } from "primeng/button";
 
 @Component({
     selector: 'userInfo',
     templateUrl: './userInfo.html',
-    imports: []
+    imports: [DividerModule, DatePickerModule, AutoCompleteModule, ReactiveFormsModule, Button]
 })
 
-export class UserInfo {/*
+export class UserInfo {
     anagraficaForm!: FormGroup;
 
-  sessi = [
+  generi = [
     { label: 'Maschio', value: 'M' },
-    { label: 'Femmina', value: 'F' },
-    { label: 'Altro', value: 'A' }
+    { label: 'Femmina', value: 'F' }
   ];
 
   constructor(private fb: FormBuilder) {}
@@ -22,7 +26,7 @@ export class UserInfo {/*
       nome: ['', Validators.required],
       cognome: ['', Validators.required],
       dataNascita: [null, Validators.required],
-      sesso: [null, Validators.required],
+      genere: [null, Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefono: [''],
       via: [''],
@@ -33,10 +37,8 @@ export class UserInfo {/*
   }
 
   onSubmit() {
-    if (this.anagraficaForm.valid) {
-      console.log('Dati Anagrafica:', this.anagraficaForm.value);
-    } else {
+    if (!this.anagraficaForm.valid) {
       this.anagraficaForm.markAllAsTouched();
     }
+  }
 }
-*/}

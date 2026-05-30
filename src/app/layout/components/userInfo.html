@@ -1,72 +1,125 @@
-<form [formGroup]="anagraficaForm" (ngSubmit)="onSubmit()" class="p-fluid p-formgrid p-grid">
+<form [formGroup]="anagraficaForm" (ngSubmit)="onSubmit()" class="space-y-6">
 
   <!-- Sezione: Informazioni di base -->
-  <p-divider align="left" type="dashed">Informazioni di Base</p-divider>
+  <p-divider>
+    <span class="font-semibold">Informazioni di Base</span>
+  </p-divider>
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="nome">Nome</label>
-    <input id="nome" type="text" pInputText formControlName="nome" />
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label for="nome" class="block mb-2">Nome</label>
+      <input id="nome"
+        class="w-full"
+        type="text"
+        pInputText
+        formControlName="nome" />
+    </div>
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="cognome">Cognome</label>
-    <input id="cognome" type="text" pInputText formControlName="cognome" />
-  </div>
+    <div>
+      <label for="cognome" class="block mb-2">Cognome</label>
+      <input id="cognome"
+        class="w-full"
+        type="text"
+        pInputText
+        formControlName="cognome" />
+    </div>
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="dataNascita">Data di Nascita</label>
-    <p-calendar id="dataNascita" formControlName="dataNascita" dateFormat="dd/mm/yy"></p-calendar>
-  </div>
+    <div>
+      <label for="dataNascita" class="block mb-2">Data di Nascita</label>
+      <p-datepicker id="dataNascita"
+      class="w-full"
+      formControlName="dataNascita"
+      dateFormat="dd/mm/yy"></p-datepicker>
+    </div>
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="sesso">Sesso</label>
-    <p-dropdown 
-      id="sesso" 
-      [options]="sessi" 
-      formControlName="sesso" 
-      placeholder="Seleziona sesso">
-    </p-dropdown>
-  </div>
+    <div>
+      <label for="genere" class="block mb-2">Genere</label>
+      <p-autocomplete 
+        id="genere"
+        class="w-full"
+        [suggestions]="generi" 
+        formControlName="genere" 
+        placeholder="Seleziona genere">
+      </p-autocomplete>
+    </div>
+</div>
 
   <!-- Sezione: Contatti -->
-  <p-divider align="left" type="dashed">Contatti</p-divider>
+  <p-divider>
+     <span class="font-semibold">Contatti</span>
+    </p-divider>
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="email">Email</label>
-    <input id="email" type="email" pInputText formControlName="email" />
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-  <div class="p-field p-col-12 p-md-6">
-    <label for="telefono">Telefono</label>
-    <input id="telefono" type="tel" pInputText formControlName="telefono" />
+    <div>
+        <label for="email" class="block mb-2">Email</label>
+        <input id="email"
+          class="w-full"
+          type="email"
+          pInputText
+          formControlName="email" />
+    </div>
+
+    <div>
+      <label for="telefono" class="block mb-2">Telefono</label>
+      <input id="telefono"
+        class="w-full"
+        type="tel"
+        pInputText
+        formControlName="telefono" />
+    </div>
   </div>
 
   <!-- Sezione: Indirizzo -->
-  <p-divider align="left" type="dashed">Indirizzo</p-divider>
+  <p-divider>
+    <span class="font-semibold">Indirizzo</span>
+  </p-divider>
 
-  <div class="p-field p-col-12">
-    <label for="via">Via / Indirizzo</label>
-    <input id="via" type="text" pInputText formControlName="via" />
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
 
-  <div class="p-field p-col-12 p-md-4">
-    <label for="citta">Città</label>
-    <input id="citta" type="text" pInputText formControlName="citta" />
-  </div>
+    <div class="md:col-span-12">
+       <label for="via" class="block mb-2">Via / Indirizzo</label>
+            <input
+                pInputText
+                id="via"
+                formControlName="via"
+                class="w-full">
+        </div>
 
-  <div class="p-field p-col-12 p-md-4">
-    <label for="cap">CAP</label>
-    <input id="cap" type="text" pInputText formControlName="cap" />
-  </div>
+        <div class="md:col-span-5">
+            <label for="citta" class="block mb-2">Città</label>
+            <input
+                pInputText
+                id="citta"
+                formControlName="citta"
+                class="w-full">
+        </div>
 
-  <div class="p-field p-col-12 p-md-4">
-    <label for="provincia">Provincia</label>
-    <input id="provincia" type="text" pInputText formControlName="provincia" />
-  </div>
+        <div class="md:col-span-3">
+            <label for="cap" class="block mb-2">CAP</label>
+            <input
+                pInputText
+                id="cap"
+                formControlName="cap"
+                class="w-full">
+        </div>
+
+        <div class="md:col-span-4">
+            <label for="provincia" class="block mb-2">Provincia</label>
+            <input
+                pInputText
+                id="provincia"
+                formControlName="provincia"
+                class="w-full">
+        </div>
+</div>
 
   <!-- Pulsante di submit -->
-  <div class="p-field p-col-12">
-    <button pButton type="submit" label="Salva"></button>
-  </div>
+   <div class="flex justify-end">
+        <p-button
+            type="submit"
+            label="Salva">
+        </p-button>
+    </div>
 
 </form>

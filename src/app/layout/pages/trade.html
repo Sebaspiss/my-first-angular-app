@@ -1,0 +1,104 @@
+<div class="card">
+
+  <p-dataview [value]="products()">
+
+    <ng-template #list let-items>
+
+      <div class="flex flex-col gap-2">
+
+        @for (item of items; track item.id) {
+
+          <div class="flex items-center justify-between px-4 py-3 rounded-xl border hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+
+            <!-- LEFT: Asset -->
+            <div class="flex items-center gap-3 w-1/4">
+              <img
+                class="w-10 h-10 rounded-full object-cover"
+                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image"
+                [alt]="item.name"
+              />
+
+              <div class="flex flex-col">
+                <span class="font-semibold text-gray-800 dark:text-gray-100">
+                  {{ item.symbol || item.name }}
+                </span>
+                <span class="text-xs text-gray-500">
+                  {{ item.category }}
+                </span>
+              </div>
+            </div>
+
+            <!-- CENTER: Price + Change + Sparkline -->
+            <div class="flex items-center justify-center gap-4 w-2/4">
+
+              <!-- Price -->
+              <div class="text-right">
+                <div class="text-lg font-bold text-gray-900 dark:text-white">
+                  ${{ item.price }}
+                </div>
+
+                <div
+                  class="text-sm font-medium"
+                  [class.text-green-500]="item.change >= 0"
+                  [class.text-red-500]="item.change < 0">
+
+                  {{ item.change >= 0 ? '+' : '' }}{{ item.change }}%
+                </div>
+              </div>
+
+              <!-- Sparkline (placeholder) -->
+              <div class="w-24 h-8 flex items-end gap-[2px]">
+                <div class="w-1 bg-gray-300 h-2 rounded"></div>
+                <div class="w-1 bg-gray-300 h-3 rounded"></div>
+                <div class="w-1 bg-green-400 h-5 rounded"></div>
+                <div class="w-1 bg-green-500 h-6 rounded"></div>
+                <div class="w-1 bg-green-400 h-4 rounded"></div>
+                <div class="w-1 bg-gray-300 h-3 rounded"></div>
+                <div class="w-1 bg-gray-300 h-2 rounded"></div>
+              </div>
+
+              <!-- Status -->
+              <span
+                class="text-xs px-2 py-1 rounded-full"
+                [ngClass]="{
+                  'bg-green-100 text-green-700': item.inventoryStatus === 'INSTOCK',
+                  'bg-yellow-100 text-yellow-700': item.inventoryStatus === 'LOWSTOCK',
+                  'bg-red-100 text-red-700': item.inventoryStatus === 'OUTOFSTOCK'
+                }">
+                {{ item.inventoryStatus }}
+              </span>
+
+            </div>
+
+            <!-- RIGHT: Actions -->
+            <div class="flex gap-2 w-1/4 justify-end">
+
+              <p-button
+                label="Buy"
+                icon="pi pi-arrow-up"
+                size="small"
+                severity="success"
+                [disabled]="item.inventoryStatus === 'OUTOFSTOCK'">
+              </p-button>
+
+              <p-button
+                label="Sell"
+                icon="pi pi-arrow-down"
+                size="small"
+                severity="danger"
+                [disabled]="item.inventoryStatus === 'OUTOFSTOCK'">
+              </p-button>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </ng-template>
+
+  </p-dataview>
+
+</div>
