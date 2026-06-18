@@ -6,8 +6,7 @@ import { TabsModule } from 'primeng/tabs';
 @Component({
     selector: "page-account",
     template: `
-         <div class="card">
-            <p-tabs>
+            <p-tabs px-5>
                 <p-tablist>
                 @for (tab of tabs; track tab.route) {
                     <p-tab>
@@ -20,7 +19,6 @@ import { TabsModule } from 'primeng/tabs';
                 </p-tablist>
             </p-tabs>
       <router-outlet></router-outlet>
-    </div>
     `,
     imports: [RouterModule, RouterOutlet, TabsModule],
     standalone: true

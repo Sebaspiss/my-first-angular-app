@@ -2,13 +2,13 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { DatePickerModule } from 'primeng/datepicker';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectModule  } from 'primeng/select';
 import { Button } from "primeng/button";
 
 @Component({
     selector: 'userInfo',
     templateUrl: './userInfo.html',
-    imports: [DividerModule, DatePickerModule, AutoCompleteModule, ReactiveFormsModule, Button]
+    imports: [DividerModule, DatePickerModule, SelectModule , ReactiveFormsModule, Button]
 })
 
 export class UserInfo {

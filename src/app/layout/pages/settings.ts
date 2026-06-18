@@ -32,7 +32,6 @@ interface Currency {
     ButtonModule
   ],
   template: `
-    <div class="space-y-6">
       <p-card header="Impostazioni Applicazione">
         <div class="space-y-4">
 
@@ -59,18 +58,16 @@ interface Currency {
           </div>
 
           <!-- Formato orario -->
-          <div>
-            <label class="block mb-1 font-medium">Formato Orario</label>
-            <div class="flex gap-4">
-              @for (option of timeFormats; track option) {
-                <p-radiobutton
-                  [value]="option"
-                  [(ngModel)]="data.timeFormat"
-                  optionlabel="option">
-                </p-radiobutton>
-              }
-            </div>
+          <label class="font-medium">Formato Orario</label>
+          @for (option of timeFormats; track option) {
+          <div class="flex items-center gap-2">
+            <p-radiobutton
+              [value]="option"
+              [(ngModel)]="data.timeFormat">
+            </p-radiobutton>
+            <label>{{ option }}</label>
           </div>
+}
 
           <!-- Notifiche email -->
           <div class="flex items-center gap-3">
@@ -94,13 +91,14 @@ interface Currency {
             </p-inputNumber>
           </div>
 
-          <div class="flex justify-end mt-4">
-            <button pButton label="Salva Impostazioni" class="p-button-success"></button>
+          <div class="flex mt-4">
+            <p-button
+              label="Salva Impostazioni">
+            </p-button>
           </div>
 
         </div>
       </p-card>
-    </div>
   `
 })
 export class Settings {

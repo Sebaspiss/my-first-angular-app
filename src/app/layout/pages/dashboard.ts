@@ -7,7 +7,7 @@ import { News } from "../components/news";
 @Component({
     selector: "page-dashboard",
     template: `
-    <div class="flex flex-col"> 
+    <div class="bg-blue-400 flex flex-col"> 
         <div class="flex flex-row h-1/2">
             <chartLine class="relative w-1/2 mx-5 mt-5"></chartLine>
             <portfolio class="relative w-1/2 mx-5 mt-5"></portfolio>

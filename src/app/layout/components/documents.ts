@@ -70,7 +70,7 @@ import { DividerModule } from 'primeng/divider';
             label="Elabora"
             icon="pi pi-check"
             [disabled]="selectedCount === 0"
-            class="p-button-sm p-button-success">
+            class="p-button-sm">
           </button>
         </div>
 

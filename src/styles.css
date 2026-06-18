@@ -27,6 +27,8 @@ html, body {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 header {
@@ -35,9 +37,9 @@ header {
 
 /* MENU ACCOUNT */
 p-tab.p-tab-active {
-  color: rgb(147 197 253);
+  color:rgb(96 165 250);
 }
 
 p-tablist .p-tablist-active-bar {
-  background: rgb(147 197 253);
+  background: rgb(96 165 250);
 }
