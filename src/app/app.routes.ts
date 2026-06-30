@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { Account } from './layout/pages/account';
-import { Dashboard } from './layout/pages/dashboard';
-import { Settings } from './layout/pages/settings';
-import { Trade } from './layout/pages/trade';
-import { UserInfo } from './layout/components/userInfo';
-import { Messages } from './layout/components/messages';
-import { Documents } from './layout/components/documents';
+import { Account } from './layout/pages/account/account';
+import { Dashboard } from './layout/pages/dashboard/dashboard';
+import { Settings } from './layout/pages/settings/settings';
+import { Trade } from './layout/pages/trade/trade';
+import { UserInfo } from './layout/pages/account/components/userInfo';
+import { Messages } from './layout/pages/account/components/messages';
+import { Documents } from './layout/pages/account/components/documents';
 
 export const routes: Routes = [
     {
