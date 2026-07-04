@@ -2,66 +2,71 @@
 
   <!-- Sezione: Informazioni di base -->
   <p-divider>
-    <span class="font-semibold">Informazioni di Base</span>
+    <span class="font-bold text-base text-blue-600 dark:text-blue-400">Informazioni di Base</span>
   </p-divider>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
-      <label for="nome" class="block mb-2">Nome</label>
+      <label for="nome" class="block mb-2 text-sm font-medium">Nome</label>
       <input id="nome"
-        class="w-full border border-solid border-gray-50"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         type="text"
         formControlName="nome" />
     </div>
 
     <div>
-      <label for="cognome" class="block mb-2">Cognome</label>
+      <label for="cognome" class="block mb-2 text-sm font-medium">Cognome</label>
       <input id="cognome"
-        class="w-full"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         type="text"
         formControlName="cognome" />
     </div>
 
     <div>
-      <label for="dataNascita" class="block mb-2">Data di Nascita</label>
+      <label for="dataNascita" class="block mb-2 text-sm font-medium">Data di Nascita</label>
       <p-datepicker id="dataNascita"
         class="w-full"
+        styleClass="w-full"
         formControlName="dataNascita"
         dateFormat="dd/mm/yy">
       </p-datepicker>
     </div>
 
     <div>
-      <label for="genere" class="block mb-2">Genere</label>
+      <label for="genere" class="block mb-2 text-sm font-medium">Genere</label>
       <p-select 
           id="genere"
           class="w-full"
+          styleClass="w-full"
           [options] = "generi"
           formControlName="genere" 
           placeholder="Seleziona genere">
       </p-select>
     </div>
-</div>
+  </div>
 
   <!-- Sezione: Contatti -->
   <p-divider>
-     <span class="font-semibold">Contatti</span>
-    </p-divider>
+     <span class="font-bold text-base text-blue-600 dark:text-blue-400">Contatti</span>
+  </p-divider>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
     <div>
-        <label for="email" class="block mb-2">Email</label>
-        <input id="email"
-          class="w-full border-solid"
-          type="email"
-          formControlName="email" />
+      <label for="email" class="block mb-2 text-sm font-medium">Email</label>
+      <input id="email"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        type="email"
+        formControlName="email" />
     </div>
 
     <div>
-      <label for="telefono" class="block mb-2">Telefono</label>
+      <label for="telefono" class="block mb-2 text-sm font-medium">Telefono</label>
       <input id="telefono"
-        class="w-full"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
         type="tel"
         formControlName="telefono" />
     </div>
@@ -69,51 +74,55 @@
 
   <!-- Sezione: Indirizzo -->
   <p-divider>
-    <span class="font-semibold">Indirizzo</span>
+    <span class="font-bold text-base text-blue-600 dark:text-blue-400">Indirizzo</span>
   </p-divider>
 
   <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
-
     <div class="md:col-span-12">
-       <label for="via" class="block mb-2">Via / Indirizzo</label>
-            <input
-                id="via"
-                formControlName="via"
-                class="w-full">
-        </div>
+      <label for="via" class="block mb-2 text-sm font-medium">Via / Indirizzo</label>
+      <input id="via"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        type="text"
+        formControlName="via" />
+    </div>
 
-        <div class="md:col-span-5">
-            <label for="citta" class="block mb-2">Città</label>
-            <input
-                id="citta"
-                formControlName="citta"
-                class="w-full">
-        </div>
+    <div class="md:col-span-5">
+      <label for="citta" class="block mb-2 text-sm font-medium">Città</label>
+      <input id="citta"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        type="text"
+        formControlName="citta" />
+    </div>
 
-        <div class="md:col-span-3">
-            <label for="cap" class="block mb-2">CAP</label>
-            <input
-                id="cap"
-                formControlName="cap"
-                class="w-full">
-        </div>
+    <div class="md:col-span-3">
+      <label for="cap" class="block mb-2 text-sm font-medium">CAP</label>
+      <input id="cap"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        type="text"
+        formControlName="cap" />
+    </div>
 
-        <div class="md:col-span-4">
-            <label for="provincia" class="block mb-2">Provincia</label>
-            <input
-                id="provincia"
-                formControlName="provincia"
-                class="w-full">
-        </div>
-</div>
+    <div class="md:col-span-4">
+      <label for="provincia" class="block mb-2 text-sm font-medium">Provincia</label>
+      <input id="provincia"
+        pInputText
+        class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        type="text"
+        formControlName="provincia" />
+    </div>
+  </div>
 
   <!-- Pulsante di submit -->
-   <div class="flex justify-center">
-        <p-button
-            type="submit"
-            label="Salva"
-            severity="primary">
-        </p-button>
-    </div>
+  <div class="flex justify-center mt-12 mb-6">
+    <p-button
+      type="submit"
+      label="Salva"
+      severity="primary"
+      styleClass="w-full md:w-64 py-2.5 text-base font-semibold shadow-md">
+    </p-button>
+  </div>
 
 </form>

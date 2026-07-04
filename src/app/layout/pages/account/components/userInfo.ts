@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DividerModule } from 'primeng/divider';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectModule  } from 'primeng/select';
+import { InputTextModule } from 'primeng/inputtext';
 import { Button } from "primeng/button";
 
 @Component({
     selector: 'userInfo',
     templateUrl: './userInfo.html',
-    imports: [DividerModule, DatePickerModule, SelectModule , ReactiveFormsModule, Button]
+    imports: [DividerModule, DatePickerModule, SelectModule, InputTextModule, ReactiveFormsModule, Button]
 })
 
 export class UserInfo {

@@ -1,8 +1,8 @@
 import { Component, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { DataViewModule } from "primeng/dataview";
+import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
-import { TagModule } from "primeng/tag";
+import { CardModule } from "primeng/card";
 
 @Component({
     selector: "trade",
@@ -10,9 +10,9 @@ import { TagModule } from "primeng/tag";
     standalone: true,
     imports: [
         CommonModule,
-        DataViewModule,
+        TableModule,
         ButtonModule,
-        TagModule
+        CardModule
     ]
 })
 export class Trade implements OnInit {
@@ -20,45 +20,67 @@ export class Trade implements OnInit {
     products = signal<any[]>([
         {
             id: 1,
+            symbol: "BTC",
             name: "Bitcoin ETF",
-            category: "Crypto",
-            price: 45000,
-            rating: 4.8,
-            image: "bamboo-watch.jpg",
-            inventoryStatus: "INSTOCK"
+            category: "Criptovalute",
+            price: 61250,
+            change: 3.42,
+            status: "NEGOZIABILE"
         },
         {
             id: 2,
-            name: "Ethereum Bond",
-            category: "Crypto",
-            price: 3200,
-            rating: 4.5,
-            image: "black-watch.jpg",
-            inventoryStatus: "LOWSTOCK"
+            symbol: "ETH",
+            name: "Ethereum Trust",
+            category: "Criptovalute",
+            price: 3140.50,
+            change: 1.85,
+            status: "NEGOZIABILE"
         },
         {
             id: 3,
-            name: "Tokenized Gold",
-            category: "Commodities",
-            price: 2100,
-            rating: 4.9,
-            image: "blue-band.jpg",
-            inventoryStatus: "OUTOFSTOCK"
+            symbol: "GOLD",
+            name: "Oro Digitale ETC",
+            category: "Materie Prime",
+            price: 2150.80,
+            change: -0.24,
+            status: "NEGOZIABILE"
+        },
+        {
+            id: 4,
+            symbol: "AAPL",
+            name: "Apple Inc.",
+            category: "Azionario",
+            price: 174.30,
+            change: 0.95,
+            status: "NEGOZIABILE"
+        },
+        {
+            id: 5,
+            symbol: "TSLA",
+            name: "Tesla Motors",
+            category: "Azionario",
+            price: 162.10,
+            change: -1.50,
+            status: "SOSPESO"
         }
     ]);
 
     ngOnInit() {}
 
-    getSeverity(product: any) {
-        switch (product.inventoryStatus) {
-            case "INSTOCK":
-                return "success";
-            case "LOWSTOCK":
-                return "warn";
-            case "OUTOFSTOCK":
-                return "danger";
+    getBadgeClass(category: string): string {
+        switch (category) {
+            case "Criptovalute":
+                return "bg-orange-100 text-orange-600";
+            case "Materie Prime":
+                return "bg-amber-100 text-amber-600";
+            case "Azionario":
+                return "bg-blue-100 text-blue-600";
             default:
-                return null;
+                return "bg-gray-100 text-gray-600";
         }
+    }
+
+    formatPrice(price: number): string {
+        return price.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 }

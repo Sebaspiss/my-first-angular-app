@@ -10,36 +10,12 @@ html, body {
   padding: 0;
 }
 
-.layout {
-    height: 100vh;
+/* Custom form label color overrides */
+form label {
+  color: #000000 !important; /* Pure black */
 }
 
-.sidebar {
-    width: 200px;
-    min-width: 200px;
-    height: 100%;
-    overflow-y: auto;
-    flex-shrink: 0;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-header {
-    flex-shrink: 0;
-}
-
-/* MENU ACCOUNT */
-p-tab.p-tab-active {
-  color:rgb(96 165 250);
-}
-
-p-tablist .p-tablist-active-bar {
-  background: rgb(96 165 250);
+.p-dark form label,
+.dark form label {
+  color: #ffffff !important; /* Pure white in dark mode */
 }
