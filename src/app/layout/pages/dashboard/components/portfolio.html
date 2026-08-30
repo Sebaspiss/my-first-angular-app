@@ -1,0 +1,62 @@
+<p-card class="border border-blue-600 shadow-sm w-full h-full">
+  <ng-template #header>
+    <header class="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-wallet text-green-500 text-lg"></i>
+        <div class="flex flex-col">
+          <h2 class="font-bold text-gray-800 text-base">Bilancio Portafoglio</h2>
+          <span class="text-xs text-gray-500">Asset allocation e controvalore totale</span>
+        </div>
+      </div>
+      <span class="text-xs text-gray-400 font-bold text-green-600 bg-green-50 px-2 py-1 rounded">+1.85% oggi</span>
+    </header>
+  </ng-template>
+
+  <div class="space-y-6 mt-2">
+    <!-- Total Balance -->
+    <div class="flex flex-col gap-0.5">
+      <span class="text-xs text-gray-400 font-semibold uppercase tracking-wider">Valore Totale Stimato</span>
+      <div class="flex items-baseline gap-2">
+        <span class="text-2xl font-black text-gray-900">{{ portfolioService.formattedTotalBalance() }}</span>
+        <span class="text-xs font-semibold text-green-600">{{ portfolioService.formattedTodayProfit() }}</span>
+      </div>
+    </div>
+
+    <p-divider class="block my-2"></p-divider>
+
+    <!-- Assets List -->
+    <ul class="space-y-4">
+      @for (asset of portfolioService.computedAssets(); track asset.symbol) {
+        <li class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <!-- Color-coded avatar icon background -->
+            <span 
+              class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs" aria-hidden="true"
+              [ngClass]="{
+                'bg-orange-100 text-orange-600': asset.symbol === 'BTC',
+                'bg-purple-100 text-purple-600': asset.symbol === 'ETH',
+                'bg-amber-100 text-amber-600': asset.symbol === 'AMZN',
+                'bg-blue-100 text-blue-600': asset.symbol === 'MSFT'
+              }"
+            >
+              {{ asset.symbol }}
+            </span>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-800">{{ asset.name }}</span>
+              <span class="text-xs text-gray-400">Allocazione: {{ asset.allocation }}</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm font-bold text-gray-900">{{ asset.formattedVal }}</div>
+            <span 
+              class="text-[10px] font-medium"
+              [ngClass]="asset.isPositive ? 'text-green-600' : 'text-red-600'"
+            >
+              {{ asset.change }}
+            </span>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</p-card>

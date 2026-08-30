@@ -1,0 +1,207 @@
+<section class="space-y-6" aria-labelledby="settings-title">
+  <!-- Page Title -->
+  <header class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+      <i class="pi pi-cog text-xl"></i>
+    </div>
+    <div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <h1 id="settings-title" class="text-xl font-bold text-gray-900">Impostazioni Applicazione</h1>
+        <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+          <i class="pi pi-check-circle text-[10px]"></i>
+          Salvataggio automatico
+        </span>
+      </div>
+      <p class="text-sm text-gray-500">Personalizza l'esperienza d'uso della tua piattaforma di trading</p>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Column 1: Localizzazione & Preferenze -->
+    <div class="space-y-6">
+      <p-card class="border border-blue-600 shadow-sm">
+        <ng-template #header>
+          <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
+            <i class="pi pi-globe text-blue-500 text-lg"></i>
+            <div class="flex flex-col">
+              <span class="font-bold text-gray-800 text-base">Localizzazione & Valuta</span>
+              <span class="text-xs text-gray-500">Imposta la lingua e la valuta predefinita di visualizzazione</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="space-y-5 mt-4">
+          <!-- Lingua -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700">Lingua Piattaforma</label>
+            <div class="grid grid-cols-3 gap-3">
+              @for (lang of settingsService.languages; track lang.code) {
+                <button type="button" 
+                  class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
+                  [class.border-blue-500]="settingsService.language().code === lang.code"
+                  [class.bg-blue-50/20]="settingsService.language().code === lang.code"
+                  [class.border-gray-200]="settingsService.language().code !== lang.code"
+                  (click)="settingsService.language.set(lang)"
+                >
+                  <span class="text-sm font-semibold text-gray-800">{{ lang.label }}</span>
+                  <span class="text-xs text-gray-400 uppercase font-mono font-medium">{{ lang.code }}</span>
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Valuta -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700">Valuta di Riferimento</label>
+            <div class="grid grid-cols-3 gap-3">
+              @for (curr of settingsService.currencies; track curr.code) {
+                <button type="button"
+                  class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
+                  [class.border-blue-500]="settingsService.currency().code === curr.code"
+                  [class.bg-blue-50/20]="settingsService.currency().code === curr.code"
+                  [class.border-gray-200]="settingsService.currency().code !== curr.code"
+                  (click)="settingsService.currency.set(curr)"
+                >
+                  <span class="text-sm font-semibold text-gray-800">{{ curr.label }}</span>
+                  <span class="text-xs text-gray-400 uppercase font-mono font-medium">{{ curr.code }}</span>
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      </p-card>
+
+      <p-card class="border border-blue-600 shadow-sm">
+        <ng-template #header>
+          <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
+            <i class="pi pi-clock text-blue-500 text-lg"></i>
+            <div class="flex flex-col">
+              <span class="font-bold text-gray-800 text-base">Formato Orario</span>
+              <span class="text-xs text-gray-500">Seleziona come visualizzare l'ora nei grafici e transazioni</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="space-y-3 mt-4">
+          <div 
+            class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition" 
+            [class.border-blue-500]="settingsService.timeFormat() === '12h'"
+            [class.bg-blue-50/20]="settingsService.timeFormat() === '12h'"
+            [class.border-gray-200]="settingsService.timeFormat() !== '12h'"
+            (click)="settingsService.timeFormat.set('12h')"
+          >
+            <p-radiobutton
+              value="12h"
+              [ngModel]="settingsService.timeFormat()"
+              (ngModelChange)="settingsService.timeFormat.set($event)"
+              (click)="$event.stopPropagation()">
+            </p-radiobutton>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-800">Formato 12 ore (AM/PM)</span>
+              <span class="text-xs text-gray-500">Es. 02:30 PM, 09:15 AM</span>
+            </div>
+          </div>
+
+          <div 
+            class="flex items-center gap-3 border rounded-lg p-3 cursor-pointer hover:bg-gray-50 transition" 
+            [class.border-blue-500]="settingsService.timeFormat() === '24h'"
+            [class.bg-blue-50/20]="settingsService.timeFormat() === '24h'"
+            [class.border-gray-200]="settingsService.timeFormat() !== '24h'"
+            (click)="settingsService.timeFormat.set('24h')"
+          >
+            <p-radiobutton
+              value="24h"
+              [ngModel]="settingsService.timeFormat()"
+              (ngModelChange)="settingsService.timeFormat.set($event)"
+              (click)="$event.stopPropagation()">
+            </p-radiobutton>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-800">Formato 24 ore</span>
+              <span class="text-xs text-gray-500">Es. 14:30, 09:15</span>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Column 2: Sicurezza & Limiti -->
+    <div class="space-y-6">
+      <p-card class="border border-blue-600 shadow-sm">
+        <ng-template #header>
+          <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
+            <i class="pi pi-shield text-blue-500 text-lg"></i>
+            <div class="flex flex-col">
+              <span class="font-bold text-gray-800 text-base">Sicurezza & Notifiche</span>
+              <span class="text-xs text-gray-500">Configura gli avvisi di sicurezza e le email</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="space-y-5 mt-4">
+          <!-- Notifiche email -->
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700">Notifiche Email</label>
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" 
+                class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
+                [class.border-blue-500]="settingsService.emailNotifications() === true"
+                [class.bg-blue-50/20]="settingsService.emailNotifications() === true"
+                [class.border-gray-200]="settingsService.emailNotifications() !== true"
+                (click)="settingsService.emailNotifications.set(true)"
+              >
+                <span class="text-sm font-semibold text-gray-800">Attive</span>
+                <span class="text-xs text-gray-400 font-medium">Ricevi avvisi email</span>
+              </button>
+              <div 
+                class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
+                [class.border-blue-500]="settingsService.emailNotifications() === false"
+                [class.bg-blue-50/20]="settingsService.emailNotifications() === false"
+                [class.border-gray-200]="settingsService.emailNotifications() !== false"
+                (click)="settingsService.emailNotifications.set(false)"
+              >
+                <span class="text-sm font-semibold text-gray-800">Disattive</span>
+                <span class="text-xs text-gray-400 font-medium">Nessun avviso email</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Limite transazioni giornaliere -->
+          <div class="space-y-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <div class="flex flex-col gap-0.5 mb-2">
+              <span class="text-sm font-semibold text-gray-800">Limite Transazioni Giornaliere</span>
+              <span class="text-xs text-gray-500">Imposta una soglia massima giornaliera di operazioni autorizzate</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <!-- Custom counter with spin buttons on the right -->
+              <div class="flex items-center bg-white border border-gray-300 rounded-lg overflow-hidden w-36">
+                <input 
+                  type="text" 
+                  class="w-full text-left px-3 py-2 text-sm focus:outline-none bg-transparent text-gray-900 border-none"
+                  [value]="settingsService.maxDailyTransactions()"
+                  readonly
+                />
+                <div class="flex flex-col border-l border-gray-200">
+                  <button 
+                    class="px-2 py-0.5 hover:bg-gray-100 flex items-center justify-center text-gray-500 border-b border-gray-200 text-[10px] cursor-pointer"
+                    (click)="incrementTransactions()"
+                  >
+                    <i class="pi pi-chevron-up"></i>
+                  </button>
+                  <button 
+                    class="px-2 py-0.5 hover:bg-gray-100 flex items-center justify-center text-gray-500 text-[10px] cursor-pointer"
+                    (click)="decrementTransactions()"
+                  >
+                    <i class="pi pi-chevron-down"></i>
+                  </button>
+                </div>
+              </div>
+              <span class="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-1 rounded">Consigliato: 20</span>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+
+  </div>
+</section>

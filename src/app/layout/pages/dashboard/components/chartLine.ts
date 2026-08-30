@@ -4,31 +4,7 @@ import { Card } from "primeng/card";
 
 @Component ({
     selector: "chartLine",
-    template: `
-    <p-card styleClass="border border-blue-600 shadow-sm" class="w-full h-full">
-      <ng-template #header>
-        <div class="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-chart-line text-blue-500 text-lg"></i>
-            <div class="flex flex-col">
-              <span class="font-bold text-gray-800 text-base">Andamento Prezzi</span>
-              <span class="text-xs text-gray-500">Quotazioni storiche degli asset in portafoglio</span>
-            </div>
-          </div>
-          <!-- Time period selection buttons -->
-          <div class="flex bg-gray-200/60 p-0.5 rounded-lg text-xs font-semibold text-gray-600">
-            <span class="px-2 py-1 bg-white text-blue-600 rounded-md shadow-sm">1M</span>
-            <span class="px-2 py-1 cursor-pointer hover:text-gray-900 transition ml-1">6M</span>
-            <span class="px-2 py-1 cursor-pointer hover:text-gray-900 transition ml-1">1A</span>
-          </div>
-        </div>
-      </ng-template>
-      
-      <div class="pt-2 h-[260px]">
-        <p-chart type="line" [data]="data" [options]="options" class="h-full block" />
-      </div>
-    </p-card>
-    `,
+    templateUrl: "./chartLine.html",
     imports: [ChartModule, Card]
 })
 

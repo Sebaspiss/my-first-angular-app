@@ -247,19 +247,6 @@ export class Documents {
     this.data.forEach(d => d.selected = !allSelected);
   }
 
-  getDocumentIcon(type: string): string {
-    switch (type) {
-      case 'PDF':
-        return 'pi pi-file-pdf';
-      case 'Excel':
-        return 'pi pi-file-excel';
-      case 'Image':
-        return 'pi pi-image';
-      default:
-        return 'pi pi-file';
-    }
-  }
-
   openDocument(doc: any) {
     this.selectedDocument = doc;
   }

@@ -1,8 +1,11 @@
-import { Component, OnInit, signal } from "@angular/core";
+import { Component, OnInit, signal, inject, computed } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
-import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
+import { Button } from "primeng/button";
+import { Card } from "primeng/card";
+import { SettingsService } from "../../../core/services/settings.service";
+import { PortfolioService } from "../../../core/services/portfolio.service";
+import { PRODUCT_STATUS } from "./trade.constants";
 
 @Component({
     selector: "trade",
@@ -11,11 +14,15 @@ import { CardModule } from "primeng/card";
     imports: [
         CommonModule,
         TableModule,
-        ButtonModule,
-        CardModule
+        Button,
+        Card
     ]
 })
 export class Trade implements OnInit {
+    readonly PRODUCT_STATUS = PRODUCT_STATUS;
+    
+    settingsService = inject(SettingsService);
+    portfolioService = inject(PortfolioService);
 
     products = signal<any[]>([
         {
@@ -25,7 +32,7 @@ export class Trade implements OnInit {
             category: "Criptovalute",
             price: 61250,
             change: 3.42,
-            status: "NEGOZIABILE"
+            status: PRODUCT_STATUS.NEGOZIABILE
         },
         {
             id: 2,
@@ -34,7 +41,7 @@ export class Trade implements OnInit {
             category: "Criptovalute",
             price: 3140.50,
             change: 1.85,
-            status: "NEGOZIABILE"
+            status: PRODUCT_STATUS.NEGOZIABILE
         },
         {
             id: 3,
@@ -43,7 +50,7 @@ export class Trade implements OnInit {
             category: "Materie Prime",
             price: 2150.80,
             change: -0.24,
-            status: "NEGOZIABILE"
+            status: PRODUCT_STATUS.NEGOZIABILE
         },
         {
             id: 4,
@@ -52,7 +59,7 @@ export class Trade implements OnInit {
             category: "Azionario",
             price: 174.30,
             change: 0.95,
-            status: "NEGOZIABILE"
+            status: PRODUCT_STATUS.NEGOZIABILE
         },
         {
             id: 5,
@@ -61,9 +68,20 @@ export class Trade implements OnInit {
             category: "Azionario",
             price: 162.10,
             change: -1.50,
-            status: "SOSPESO"
+            status: PRODUCT_STATUS.SOSPESO
         }
     ]);
+
+    computedProducts = computed(() => {
+        const rate = this.portfolioService.rates[this.settingsService.currency().code] || 1.0;
+        return this.products().map(product => {
+            const convertedPrice = product.price * rate;
+            return {
+                ...product,
+                convertedPrice
+            };
+        });
+    });
 
     ngOnInit() {}
 
@@ -81,6 +99,8 @@ export class Trade implements OnInit {
     }
 
     formatPrice(price: number): string {
-        return price.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const symbol = this.settingsService.currency().symbol;
+        const formatted = price.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return `${symbol} ${formatted}`;
     }
 }
