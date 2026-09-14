@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
-import { SettingsService } from '../../../core/services/settings.service';
+import { SettingsService } from '../../core/services/settings.service';
 
 @Component({
   selector: 'settings',

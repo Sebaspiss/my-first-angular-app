@@ -3,8 +3,8 @@ import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { Button } from "primeng/button";
 import { Card } from "primeng/card";
-import { SettingsService } from "../../../core/services/settings.service";
-import { PortfolioService } from "../../../core/services/portfolio.service";
+import { SettingsService } from "../../core/services/settings.service";
+import { PortfolioService } from "../../core/services/portfolio.service";
 import { PRODUCT_STATUS } from "./trade.constants";
 
 @Component({
