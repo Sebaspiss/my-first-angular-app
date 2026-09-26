@@ -1,42 +1,36 @@
-<div class="space-y-4">
+<section class="space-y-4" aria-label="Sezione Messaggi">
   <p-card header="Messaggi">
-    <div class="space-y-3">
+    <ul class="space-y-3 list-none p-0 m-0" role="list">
       @for (msg of data; track msg.id) {
-        <div 
-          class="flex items-start justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-blue-300 transition cursor-pointer"
-          (click)="openMessage(msg)"
-        >
-          <div class="flex flex-col gap-1">
-            <div class="font-semibold text-gray-800">
-              {{ msg.title }}
+        <li>
+          <button 
+            type="button"
+            class="w-full text-left flex items-start justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50 hover:border-blue-300 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+            (click)="openMessage(msg)"
+            >
+            <div class="flex flex-col gap-1 pr-2">
+              <h3 class="font-semibold text-gray-800 text-sm m-0">{{ msg.title }}</h3>
+              <p class="text-sm text-gray-500 m-0 line-clamp-2">{{ msg.preview }}</p>
+              <time class="text-xs text-gray-400">{{ msg.date }}</time>
             </div>
-            <div class="text-sm text-gray-500">
-              {{ msg.preview }}
-            </div>
-            <div class="text-xs text-gray-400">
-              {{ msg.date }}
-            </div>
-          </div>
 
-          <p-badge 
-            [value]="msg.status"
-            [severity]="msg.status === 'nuovo' ? 'danger' : 'success'">
-          </p-badge>
-        </div>
+            <p-badge [value]="msg.status" [severity]="messageSeverity(msg.status)" class="shrink-0"></p-badge>
+          </button>
+        </li>
       }
-      
-    </div>
+    </ul>
+    
     <p-divider></p-divider>
 
-    <div class="text-right text-sm text-gray-500">
-      Totale messaggi: {{ data.length }}
-    </div>
+    <footer class="text-right text-sm text-gray-500">
+      Totale messaggi: <output>{{ data.length }}</output>
+    </footer>
   </p-card>
 
-  <!-- Native PrimeNG Dialog instead of Custom Modal -->
+  <!-- Dettaglio Messaggio -->
   <p-dialog 
     header="Dettaglio Messaggio" 
-    [visible]="selectedMessage !== null" 
+    [visible]="hasSelectedMessage" 
     (visibleChange)="closeModal()" 
     [modal]="true" 
     [style]="{ width: '450px' }"
@@ -44,58 +38,57 @@
     [resizable]="false">
     
     @if (selectedMessage) {
-      <div class="space-y-4 pt-3">
-        <!-- Title Section -->
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Titolo</label>
-          <div class="text-base font-bold text-gray-800">
-            {{ selectedMessage.title }}
-          </div>
-        </div>
-
-        <p-divider></p-divider>
-
-        <!-- Text Content Section -->
-        <div>
-          <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Contenuto</label>
-          <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-            {{ selectedMessage.preview }}
-          </p>
-        </div>
-
-        <p-divider></p-divider>
-
-        <!-- Date and Status Section -->
-        <div class="flex justify-between items-center text-xs">
+      <article class="space-y-4 pt-3">
+        <dl class="space-y-4 m-0">
           <div>
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Data Ricezione</label>
-            <span class="text-gray-500 font-medium">{{ selectedMessage.date }}</span>
+            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Titolo</dt>
+            <dd class="m-0">
+              <h4 class="text-base font-bold text-gray-800 m-0">{{ selectedMessage.title }}</h4>
+            </dd>
           </div>
-          <div class="text-right">
-            <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Stato</label>
-            <span 
-              class="px-2 py-0.5 rounded-full font-bold text-[9px] uppercase"
-              [class.bg-red-100]="selectedMessage.status === 'nuovo'"
-              [class.text-red-700]="selectedMessage.status === 'nuovo'"
-              [class.bg-green-100]="selectedMessage.status === 'letto'"
-              [class.text-green-700]="selectedMessage.status === 'letto'">
-              {{ selectedMessage.status }}
-            </span>
+
+          <p-divider></p-divider>
+
+          <!-- Contenuto -->
+          <div>
+            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Contenuto</dt>
+            <dd class="m-0">
+              <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-line m-0">{{ selectedMessage.preview }}</p>
+            </dd>
           </div>
-        </div>
-      </div>
+
+          <p-divider></p-divider>
+
+          <!-- Data e Stato -->
+          <div class="flex justify-between items-center text-xs">
+            <div>
+              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Data Ricezione</dt>
+              <dd class="m-0">
+                <time class="text-gray-500 font-medium">{{ selectedMessage.date }}</time>
+              </dd>
+            </div>
+            
+            <div class="text-right">
+              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Stato</dt>
+              <dd class="m-0">
+                <span class="px-2 py-0.5 rounded-full font-bold text-[9px] uppercase inline-block"
+                  [class.bg-red-100]="isNewMessage"
+                  [class.text-red-700]="isNewMessage"
+                  [class.bg-green-100]="isReadMessage"
+                  [class.text-green-700]="isReadMessage">
+                  {{ selectedMessage.status }}
+                </span>
+              </dd>
+            </div>
+          </div>
+        </dl>
+      </article>
     }
 
     <ng-template #footer>
       <div class="flex justify-end pt-2">
-        <button 
-          pButton
-          label="Chiudi"
-          icon="pi pi-times"
-          (click)="closeModal()" 
-          class="p-button-sm cursor-pointer">
-        </button>
+        <button pButton label="Chiudi" icon="pi pi-times" (click)="closeModal()" class="p-button-sm cursor-pointer"></button>
       </div>
     </ng-template>
   </p-dialog>
-</div>
+</section>

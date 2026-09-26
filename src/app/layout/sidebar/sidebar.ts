@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NavLinkIconDirective } from './nav-link-icon.directive';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.html',
     standalone: true,
-    imports: [CommonModule, RouterModule]
+    imports: [CommonModule, RouterModule, NavLinkIconDirective]
 })
 export class SideBar implements OnInit {
     menuItems = [

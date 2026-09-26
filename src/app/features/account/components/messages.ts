@@ -38,6 +38,22 @@ export class Messages {
       status: 'letto'
     }
   ];
+  
+  get hasSelectedMessage(): boolean {
+    return this.selectedMessage !== null;
+  }
+
+  get isNewMessage(): boolean {
+    return this.selectedMessage.status === 'nuovo'
+  }
+
+  get isReadMessage(): boolean {
+    return this.selectedMessage.status === 'letto'
+  }
+
+  messageSeverity(status: string): any {
+    return status === 'nuovo' ? 'danger' : 'success'
+  }
 
   openMessage(msg: any) {
     this.selectedMessage = msg;

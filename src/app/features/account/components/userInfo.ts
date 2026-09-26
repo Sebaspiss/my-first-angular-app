@@ -9,7 +9,14 @@ import { Button } from "primeng/button";
 @Component({
     selector: 'userInfo',
     templateUrl: './userInfo.html',
-    imports: [DividerModule, DatePickerModule, SelectModule, InputTextModule, ReactiveFormsModule, Button]
+    imports: [
+      DividerModule,
+      DatePickerModule,
+      SelectModule,
+      InputTextModule,
+      ReactiveFormsModule,
+      Button
+    ]
 })
 
 export class UserInfo {
