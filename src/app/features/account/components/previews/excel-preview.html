@@ -1,0 +1,42 @@
+<main class="bg-white dark:bg-gray-900 p-4 w-full shadow-md rounded border border-gray-200 dark:border-gray-700 overflow-x-auto">
+      <table class="w-full text-left border-collapse text-[11px]">
+        <thead>
+          <tr class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700">
+            <th class="p-2 border-r border-gray-200 dark:border-gray-700">Item Code</th>
+            <th class="p-2 border-r border-gray-200 dark:border-gray-700">Description</th>
+            <th class="p-2 border-r border-gray-200 dark:border-gray-700 text-right">Quantity</th>
+            <th class="p-2 border-r border-gray-200 dark:border-gray-700 text-right">Unit Price</th>
+            <th class="p-2 text-right">Taxable Total</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 dark:text-gray-400">
+          @for (item of data.items; track item.code; let i = $index) {
+            <tr 
+              class="border-b border-gray-100 dark:border-gray-800"
+              [class.bg-gray-50/50]="i % 2 === 1"
+              [class.dark:bg-gray-950/20]="i % 2 === 1">
+              <td class="p-2 border-r border-gray-200 dark:border-gray-700 font-mono">{{ item.code }}</td>
+              <td class="p-2 border-r border-gray-200 dark:border-gray-700">{{ item.description }}</td>
+              <td class="p-2 border-r border-gray-200 dark:border-gray-700 text-right">{{ item.quantity }}</td>
+              <td class="p-2 border-r border-gray-200 dark:border-gray-700 text-right">{{ formatCurrency(item.unitPrice) }}</td>
+              <td class="p-2 text-right">{{ formatCurrency(item.total) }}</td>
+            </tr>
+          }
+          <tr class="font-semibold text-gray-800 dark:text-gray-200 border-t-2 border-gray-200 dark:border-gray-700">
+            <td colspan="3" class="p-2 text-right">Subtotal</td>
+            <td class="p-2 border-r border-gray-200 dark:border-gray-700 text-right"></td>
+            <td class="p-2 text-right">{{ formatCurrency(data.subtotal) }}</td>
+          </tr>
+          <tr class="font-semibold text-gray-800 dark:text-gray-200">
+            <td colspan="3" class="p-2 text-right">VAT ({{ data.vatRate }}%)</td>
+            <td class="p-2 border-r border-gray-200 dark:border-gray-700 text-right"></td>
+            <td class="p-2 text-right">{{ formatCurrency(data.vatAmount) }}</td>
+          </tr>
+          <tr class="font-bold text-gray-900 dark:text-white bg-blue-50/50 dark:bg-blue-950/20 border-t border-blue-100 dark:border-blue-900">
+            <td colspan="3" class="p-2 text-right text-blue-700 dark:text-blue-400">Invoice Total</td>
+            <td class="p-2 border-r border-gray-200 dark:border-gray-700 text-right"></td>
+            <td class="p-2 text-right text-blue-700 dark:text-blue-400">{{ formatCurrency(data.total) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>

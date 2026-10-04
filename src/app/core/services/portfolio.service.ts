@@ -51,24 +51,24 @@ export class PortfolioService {
     // Formatted strings with currency symbol
     formattedTotalBalance = computed(() => {
         const symbol = this.settingsService.currency().symbol;
-        return `${symbol} ${this.totalBalance().toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        return `${symbol} ${this.totalBalance().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     });
 
     formattedAvailableCash = computed(() => {
         const symbol = this.settingsService.currency().symbol;
-        return `${symbol} ${this.availableCash().toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        return `${symbol} ${this.availableCash().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     });
 
     formattedMarginUsed = computed(() => {
         const symbol = this.settingsService.currency().symbol;
-        return `${symbol} ${this.marginUsed().toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        return `${symbol} ${this.marginUsed().toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     });
 
     formattedTodayProfit = computed(() => {
         const symbol = this.settingsService.currency().symbol;
         const profit = this.todayProfit();
         const sign = profit >= 0 ? '+' : '';
-        return `${sign}${symbol} ${profit.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        return `${sign}${symbol} ${profit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     });
 
     computedAssets = computed(() => {
@@ -76,7 +76,7 @@ export class PortfolioService {
         const symbol = this.settingsService.currency().symbol;
         return this.assets().map(asset => {
             const convertedVal = asset.baseVal * rate;
-            const formattedVal = `${symbol} ${convertedVal.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            const formattedVal = `${symbol} ${convertedVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             return {
                 ...asset,
                 formattedVal

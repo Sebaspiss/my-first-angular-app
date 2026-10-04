@@ -1,8 +1,8 @@
 <section class="space-y-4">
-  <p-card header="Selezione Documenti">
+  <p-card header="Document Selection">
     <div class="flex justify-between items-center mb-3">
-      <div class="text-sm text-gray-500">Seleziona i documenti da inviare o gestire</div>
-      <button pButton label="Seleziona tutti" class="p-button-sm" (click)="selectAll()"></button>
+      <div class="text-sm text-gray-500">Select documents to submit or manage</div>
+      <button pButton label="Select all" class="p-button-sm" (click)="selectAll()"></button>
     </div>
 
     <section class="space-y-2">
@@ -22,7 +22,7 @@
 
           <div class="flex items-center gap-4">
             <span class="text-xs text-gray-500 hidden sm:inline">{{ doc.date }}</span>
-            <button pButton icon="pi pi-eye" label="Apri" class="p-button-outlined p-button-sm cursor-pointer" (click)="openDocument(doc); $event.stopPropagation()"></button>
+            <button pButton icon="pi pi-eye" label="Open" class="p-button-outlined p-button-sm cursor-pointer" (click)="openDocument(doc); $event.stopPropagation()"></button>
           </div>
 
         </div>
@@ -32,7 +32,7 @@
     <p-divider></p-divider>
 
     <div class="flex justify-between items-center text-sm text-gray-600">
-      <div>Selezionati: {{ selectedCount }}</div>
+      <div>Selected: {{ selectedCount }}</div>
     </div>
   </p-card>
 
@@ -64,10 +64,10 @@
 
     <ng-template #footer>
       <div class="flex justify-between items-center w-full pt-2">
-        <button pButton icon="pi pi-download" label="Scarica" class="p-button-sm cursor-pointer" 
+        <button pButton icon="pi pi-download" label="Download" class="p-button-sm cursor-pointer" 
           (click)="downloadDocument(selectedDocument)">
         </button>
-        <button pButton icon="pi pi-times" label="Chiudi" class="p-button-outlined p-button-secondary p-button-sm cursor-pointer" 
+        <button pButton icon="pi pi-times" label="Close" class="p-button-outlined p-button-secondary p-button-sm cursor-pointer" 
           (click)="closeDocument()">
         </button>
       </div>

@@ -1,5 +1,5 @@
-<section class="space-y-4" aria-label="Sezione Messaggi">
-  <p-card header="Messaggi">
+<section class="space-y-4" aria-label="Messages Section">
+  <p-card header="Messages">
     <ul class="space-y-3 list-none p-0 m-0" role="list">
       @for (msg of data; track msg.id) {
         <li>
@@ -23,13 +23,13 @@
     <p-divider></p-divider>
 
     <footer class="text-right text-sm text-gray-500">
-      Totale messaggi: <output>{{ data.length }}</output>
+      Total messages: <output>{{ data.length }}</output>
     </footer>
   </p-card>
 
-  <!-- Dettaglio Messaggio -->
+  <!-- Message Details -->
   <p-dialog 
-    header="Dettaglio Messaggio" 
+    header="Message Details" 
     [visible]="hasSelectedMessage" 
     (visibleChange)="closeModal()" 
     [modal]="true" 
@@ -41,7 +41,7 @@
       <article class="space-y-4 pt-3">
         <dl class="space-y-4 m-0">
           <div>
-            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Titolo</dt>
+            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Title</dt>
             <dd class="m-0">
               <h4 class="text-base font-bold text-gray-800 m-0">{{ selectedMessage.title }}</h4>
             </dd>
@@ -49,9 +49,9 @@
 
           <p-divider></p-divider>
 
-          <!-- Contenuto -->
+          <!-- Content -->
           <div>
-            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Contenuto</dt>
+            <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Content</dt>
             <dd class="m-0">
               <p class="text-sm text-gray-600 leading-relaxed whitespace-pre-line m-0">{{ selectedMessage.preview }}</p>
             </dd>
@@ -59,17 +59,17 @@
 
           <p-divider></p-divider>
 
-          <!-- Data e Stato -->
+          <!-- Date and Status -->
           <div class="flex justify-between items-center text-xs">
             <div>
-              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Data Ricezione</dt>
+              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Received Date</dt>
               <dd class="m-0">
                 <time class="text-gray-500 font-medium">{{ selectedMessage.date }}</time>
               </dd>
             </div>
             
             <div class="text-right">
-              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Stato</dt>
+              <dt class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Status</dt>
               <dd class="m-0">
                 <span class="px-2 py-0.5 rounded-full font-bold text-[9px] uppercase inline-block"
                   [class.bg-red-100]="isNewMessage"
@@ -87,7 +87,7 @@
 
     <ng-template #footer>
       <div class="flex justify-end pt-2">
-        <button pButton label="Chiudi" icon="pi pi-times" (click)="closeModal()" class="p-button-sm cursor-pointer"></button>
+        <button pButton label="Close" icon="pi pi-times" (click)="closeModal()" class="p-button-sm cursor-pointer"></button>
       </div>
     </ng-template>
   </p-dialog>

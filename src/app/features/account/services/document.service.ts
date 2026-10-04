@@ -13,26 +13,26 @@ export class DocumentService {
   documents = signal<DocumentItem[]>([
     {
       id: 1,
-      name: 'Contratto.pdf',
+      name: 'Contract.pdf',
       type: 'PDF',
       size: '2.1 MB',
-      date: '28/05/2026',
+      date: '05/28/2026',
       selected: false
     },
     {
       id: 2,
-      name: 'Fattura_2024.xlsx',
+      name: 'Invoice_2024.xlsx',
       type: 'Excel',
       size: '1.2 MB',
-      date: '25/05/2026',
+      date: '05/25/2026',
       selected: false
     },
     {
       id: 3,
-      name: 'Documento_identità.jpg',
+      name: 'Identity_Document.jpg',
       type: 'Image',
       size: '3.4 MB',
-      date: '20/05/2026',
+      date: '05/20/2026',
       selected: false
     }
   ]);
@@ -41,23 +41,23 @@ export class DocumentService {
     return this.documents().filter(d => d.selected).length;
   }
 
-  // Mock data per le anteprime
+  // Mock data for previews
   private pdfPreviewData: PdfPreviewData = {
-    title: 'Contratto di Servizio',
-    company: 'Fintech Company S.p.A.',
-    signer: 'Mario Rossi',
+    title: 'Service Agreement',
+    company: 'Fintech Company Inc.',
+    signer: 'John Doe',
     articles: [
       {
-        title: 'Art. 1 - Oggetto del Contratto',
-        content: "Il presente accordo disciplina la fornitura dei servizi fintech di intermediazione finanziaria e di gestione del portafoglio digitale da parte di Fintech Company all'Utente."
+        title: 'Art. 1 - Subject Matter',
+        content: 'This Agreement governs the provision of fintech financial intermediation and digital portfolio management services provided by Fintech Company to the User.'
       },
       {
-        title: 'Art. 2 - Condizioni Finanziarie',
-        content: "Le commissioni per le transazioni e i costi di tenuta conto sono indicati nel Foglio Informativo allegato e accettati dall'Utente al momento dell'attivazione dell'account."
+        title: 'Art. 2 - Financial Terms',
+        content: 'Transaction fees and account maintenance costs are specified in the attached Information Sheet and accepted by the User upon account activation.'
       },
       {
-        title: 'Art. 3 - Durata e Recesso',
-        content: "Il presente contratto è a tempo indeterminato. Entrambe le parti possono recedere in qualsiasi momento mediante comunicazione scritta o tramite la piattaforma con preavviso di 30 giorni."
+        title: 'Art. 3 - Term and Termination',
+        content: 'This Agreement is concluded for an indefinite term. Either party may terminate at any time by written notice or via the platform with 30 days prior notice.'
       }
     ]
   };
@@ -66,14 +66,14 @@ export class DocumentService {
     items: [
       {
         code: 'FT-9921',
-        description: 'Servizi di Consulenza Finanziaria - Maggio 2026',
+        description: 'Financial Advisory Services - May 2026',
         quantity: 1,
         unitPrice: 850.00,
         total: 850.00
       },
       {
         code: 'FT-8210',
-        description: 'Gestione canone piattaforma API trading',
+        description: 'Trading API Platform Subscription Fee',
         quantity: 12,
         unitPrice: 12.50,
         total: 150.00
@@ -86,12 +86,12 @@ export class DocumentService {
   };
 
   private imagePreviewData: ImagePreviewData = {
-    title: 'Repubblica Italiana',
-    subtitle: "Carta d'Identità Elettronica",
-    lastName: 'Rossi',
-    firstName: 'Mario',
-    birthDate: '15/08/1990',
-    notes: "Documento d'identità in corso di validità."
+    title: 'Identity Card',
+    subtitle: 'Electronic Identity Card',
+    lastName: 'Doe',
+    firstName: 'John',
+    birthDate: '08/15/1990',
+    notes: 'Valid identity document.'
   };
 
   getPdfPreview(_id?: number): PdfPreviewData {
@@ -116,6 +116,6 @@ export class DocumentService {
   }
 
   downloadDocument(doc: DocumentItem): void {
-    console.log(`Download avviato per: ${doc.name} (${doc.type}, ${doc.size})`);
+    console.log(`Download started for: ${doc.name} (${doc.type}, ${doc.size})`);
   }
 }

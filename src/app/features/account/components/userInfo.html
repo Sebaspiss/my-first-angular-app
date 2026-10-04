@@ -1,40 +1,40 @@
 <form [formGroup]="anagraficaForm" (ngSubmit)="onSubmit()" class="space-y-6 px-5" novalidate>
 
-  <!-- Sezione: Informazioni di base -->
+  <!-- Section: Basic Information -->
   <fieldset class="border-0 p-0 m-0 space-y-4">
     <legend class="w-full mb-2">
       <p-divider>
-        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Informazioni di Base</h2>
+        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Basic Information</h2>
       </p-divider>
     </legend>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label for="nome" class="block mb-2 text-sm font-medium">Nome <span class="text-red-500" aria-hidden="true">*</span></label>
+        <label for="nome" class="block mb-2 text-sm font-medium">First Name <span class="text-red-500" aria-hidden="true">*</span></label>
         <input 
           id="nome"
           pInputText
           class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           type="text"
           formControlName="nome"
-          autocomplete="nome"
+          autocomplete="given-name"
           aria-required="true" />
       </div>
 
       <div>
-        <label for="cognome" class="block mb-2 text-sm font-medium">Cognome <span class="text-red-500" aria-hidden="true">*</span></label>
+        <label for="cognome" class="block mb-2 text-sm font-medium">Last Name <span class="text-red-500" aria-hidden="true">*</span></label>
         <input 
           id="cognome"
           pInputText
           class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           type="text"
           formControlName="cognome"
-          autocomplete="cognome"
+          autocomplete="family-name"
           aria-required="true" />
       </div>
 
       <div>
-        <label for="dataNascita" class="block mb-2 text-sm font-medium">Data di Nascita <span class="text-red-500" aria-hidden="true">*</span></label>
+        <label for="dataNascita" class="block mb-2 text-sm font-medium">Date of Birth <span class="text-red-500" aria-hidden="true">*</span></label>
         <p-datepicker 
           inputId="dataNascita"
           class="w-full"
@@ -52,24 +52,24 @@
       </div>
 
       <div>
-        <label for="genere" class="block mb-2 text-sm font-medium">Genere <span class="text-red-500" aria-hidden="true">*</span></label>
+        <label for="genere" class="block mb-2 text-sm font-medium">Gender <span class="text-red-500" aria-hidden="true">*</span></label>
         <p-select 
           inputId="genere"
           class="w-full"
           [options]="generi"
           formControlName="genere" 
-          placeholder="Seleziona genere"
+          placeholder="Select gender"
           aria-required="true">
         </p-select>
       </div>
     </div>
   </fieldset>
 
-  <!-- Sezione: Contatti -->
+  <!-- Section: Contact Information -->
   <fieldset class="border-0 p-0 m-0 space-y-4">
     <legend class="w-full mb-2">
       <p-divider>
-        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Contatti</h2>
+        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Contact Information</h2>
       </p-divider>
     </legend>
 
@@ -87,7 +87,7 @@
       </div>
 
       <div>
-        <label for="telefono" class="block mb-2 text-sm font-medium">Telefono</label>
+        <label for="telefono" class="block mb-2 text-sm font-medium">Phone</label>
         <input 
           id="telefono"
           pInputText
@@ -100,39 +100,39 @@
     </div>
   </fieldset>
 
-  <!-- Sezione: Indirizzo -->
+  <!-- Section: Address -->
   <fieldset class="border-0 p-0 m-0 space-y-4">
     <legend class="w-full mb-2">
       <p-divider>
-        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Indirizzo</h2>
+        <h2 class="font-bold text-base text-blue-600 dark:text-blue-400 m-0 inline">Address</h2>
       </p-divider>
     </legend>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
       <div class="md:col-span-12">
-        <label for="via" class="block mb-2 text-sm font-medium">Via / Indirizzo</label>
+        <label for="via" class="block mb-2 text-sm font-medium">Street Address</label>
         <input 
           id="via"
           pInputText
           class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           type="text"
           formControlName="via"
-          autocomplete="indirizzo" />
+          autocomplete="street-address" />
       </div>
 
       <div class="md:col-span-5">
-        <label for="citta" class="block mb-2 text-sm font-medium">Città</label>
+        <label for="citta" class="block mb-2 text-sm font-medium">City</label>
         <input 
           id="citta"
           pInputText
           class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           type="text"
           formControlName="citta"
-          autocomplete="città" />
+          autocomplete="address-level2" />
       </div>
 
       <div class="md:col-span-3">
-        <label for="cap" class="block mb-2 text-sm font-medium">CAP</label>
+        <label for="cap" class="block mb-2 text-sm font-medium">Postal Code</label>
         <input 
           id="cap"
           pInputText
@@ -140,27 +140,27 @@
           type="text"
           inputmode="numeric"
           formControlName="cap"
-          autocomplete="C.A.P." />
+          autocomplete="postal-code" />
       </div>
 
       <div class="md:col-span-4">
-        <label for="provincia" class="block mb-2 text-sm font-medium">Provincia</label>
+        <label for="provincia" class="block mb-2 text-sm font-medium">State / Province</label>
         <input 
           id="provincia"
           pInputText
           class="w-full border border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           type="text"
           formControlName="provincia"
-          autocomplete="provincia" />
+          autocomplete="address-level1" />
       </div>
     </div>
   </fieldset>
 
-  <!-- Pulsante di submit -->
+  <!-- Submit button -->
   <footer class="flex justify-center mt-12 mb-6">
     <p-button
       type="submit"
-      label="Salva"
+      label="Save"
       severity="primary"
       styleClass="w-full md:w-64 py-2.5 text-base font-semibold shadow-md">
     </p-button>

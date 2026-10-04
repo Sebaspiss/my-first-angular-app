@@ -13,9 +13,9 @@ export class Account {
     private router = inject(Router);
 
     tabs = [
-        { route: 'userInfo', icon: PrimeIcons.USER, label: 'Anagrafica' },
-        { route: 'messages', icon: PrimeIcons.ENVELOPE, label: 'Messaggi' },
-        { route: 'documents', icon: PrimeIcons.FILE, label: 'Documenti' },
+        { route: 'userInfo', icon: PrimeIcons.USER, label: 'Profile Info' },
+        { route: 'messages', icon: PrimeIcons.ENVELOPE, label: 'Messages' },
+        { route: 'documents', icon: PrimeIcons.FILE, label: 'Documents' },
     ];
 
     get activeTab(): string {

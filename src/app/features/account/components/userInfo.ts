@@ -23,8 +23,8 @@ export class UserInfo {
     anagraficaForm!: FormGroup;
 
   generi = [
-    { label: 'Maschio', value: 'M' },
-    { label: 'Femmina', value: 'F' }
+    { label: 'Male', value: 'M' },
+    { label: 'Female', value: 'F' }
   ];
 
   constructor(private fb: FormBuilder) {}

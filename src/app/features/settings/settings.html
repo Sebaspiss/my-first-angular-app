@@ -6,35 +6,35 @@
     </div>
     <div>
       <div class="flex items-center gap-2 flex-wrap">
-        <h1 id="settings-title" class="text-xl font-bold text-gray-900">Impostazioni Applicazione</h1>
+        <h1 id="settings-title" class="text-xl font-bold text-gray-900">Application Settings</h1>
         <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded border border-green-200">
           <i class="pi pi-check-circle text-[10px]"></i>
-          Salvataggio automatico
+          Auto-saving
         </span>
       </div>
-      <p class="text-sm text-gray-500">Personalizza l'esperienza d'uso della tua piattaforma di trading</p>
+      <p class="text-sm text-gray-500">Customize your trading platform experience</p>
     </div>
   </header>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     
-    <!-- Column 1: Localizzazione & Preferenze -->
+    <!-- Column 1: Localization & Preferences -->
     <div class="space-y-6">
       <p-card class="border border-blue-600 shadow-sm">
         <ng-template #header>
           <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
             <i class="pi pi-globe text-blue-500 text-lg"></i>
             <div class="flex flex-col">
-              <span class="font-bold text-gray-800 text-base">Localizzazione & Valuta</span>
-              <span class="text-xs text-gray-500">Imposta la lingua e la valuta predefinita di visualizzazione</span>
+              <span class="font-bold text-gray-800 text-base">Localization & Currency</span>
+              <span class="text-xs text-gray-500">Set default language and display currency</span>
             </div>
           </div>
         </ng-template>
 
         <div class="space-y-5 mt-4">
-          <!-- Lingua -->
+          <!-- Language -->
           <div class="space-y-2">
-            <label class="block text-sm font-semibold text-gray-700">Lingua Piattaforma</label>
+            <label class="block text-sm font-semibold text-gray-700">Platform Language</label>
             <div class="grid grid-cols-3 gap-3">
               @for (lang of settingsService.languages; track lang.code) {
                 <button type="button" 
@@ -51,9 +51,9 @@
             </div>
           </div>
 
-          <!-- Valuta -->
+          <!-- Currency -->
           <div class="space-y-2">
-            <label class="block text-sm font-semibold text-gray-700">Valuta di Riferimento</label>
+            <label class="block text-sm font-semibold text-gray-700">Base Currency</label>
             <div class="grid grid-cols-3 gap-3">
               @for (curr of settingsService.currencies; track curr.code) {
                 <button type="button"
@@ -77,8 +77,8 @@
           <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
             <i class="pi pi-clock text-blue-500 text-lg"></i>
             <div class="flex flex-col">
-              <span class="font-bold text-gray-800 text-base">Formato Orario</span>
-              <span class="text-xs text-gray-500">Seleziona come visualizzare l'ora nei grafici e transazioni</span>
+              <span class="font-bold text-gray-800 text-base">Time Format</span>
+              <span class="text-xs text-gray-500">Select how time is displayed in charts and transactions</span>
             </div>
           </div>
         </ng-template>
@@ -98,8 +98,8 @@
               (click)="$event.stopPropagation()">
             </p-radiobutton>
             <div class="flex flex-col">
-              <span class="text-sm font-semibold text-gray-800">Formato 12 ore (AM/PM)</span>
-              <span class="text-xs text-gray-500">Es. 02:30 PM, 09:15 AM</span>
+              <span class="text-sm font-semibold text-gray-800">12-hour format (AM/PM)</span>
+              <span class="text-xs text-gray-500">E.g. 02:30 PM, 09:15 AM</span>
             </div>
           </div>
 
@@ -117,31 +117,31 @@
               (click)="$event.stopPropagation()">
             </p-radiobutton>
             <div class="flex flex-col">
-              <span class="text-sm font-semibold text-gray-800">Formato 24 ore</span>
-              <span class="text-xs text-gray-500">Es. 14:30, 09:15</span>
+              <span class="text-sm font-semibold text-gray-800">24-hour format</span>
+              <span class="text-xs text-gray-500">E.g. 14:30, 09:15</span>
             </div>
           </div>
         </div>
       </p-card>
     </div>
 
-    <!-- Column 2: Sicurezza & Limiti -->
+    <!-- Column 2: Security & Limits -->
     <div class="space-y-6">
       <p-card class="border border-blue-600 shadow-sm">
         <ng-template #header>
           <div class="flex items-center gap-2 p-4 border-b border-gray-100 bg-gray-50">
             <i class="pi pi-shield text-blue-500 text-lg"></i>
             <div class="flex flex-col">
-              <span class="font-bold text-gray-800 text-base">Sicurezza & Notifiche</span>
-              <span class="text-xs text-gray-500">Configura gli avvisi di sicurezza e le email</span>
+              <span class="font-bold text-gray-800 text-base">Security & Notifications</span>
+              <span class="text-xs text-gray-500">Configure security alerts and email notifications</span>
             </div>
           </div>
         </ng-template>
 
         <div class="space-y-5 mt-4">
-          <!-- Notifiche email -->
+          <!-- Email notifications -->
           <div class="space-y-2">
-            <label class="block text-sm font-semibold text-gray-700">Notifiche Email</label>
+            <label class="block text-sm font-semibold text-gray-700">Email Notifications</label>
             <div class="grid grid-cols-2 gap-3">
               <button type="button" 
                 class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
@@ -150,8 +150,8 @@
                 [class.border-gray-200]="settingsService.emailNotifications() !== true"
                 (click)="settingsService.emailNotifications.set(true)"
               >
-                <span class="text-sm font-semibold text-gray-800">Attive</span>
-                <span class="text-xs text-gray-400 font-medium">Ricevi avvisi email</span>
+                <span class="text-sm font-semibold text-gray-800">Enabled</span>
+                <span class="text-xs text-gray-400 font-medium">Receive email alerts</span>
               </button>
               <div 
                 class="flex flex-col items-center justify-center p-3 border rounded-lg cursor-pointer transition text-center hover:bg-gray-50"
@@ -160,17 +160,17 @@
                 [class.border-gray-200]="settingsService.emailNotifications() !== false"
                 (click)="settingsService.emailNotifications.set(false)"
               >
-                <span class="text-sm font-semibold text-gray-800">Disattive</span>
-                <span class="text-xs text-gray-400 font-medium">Nessun avviso email</span>
+                <span class="text-sm font-semibold text-gray-800">Disabled</span>
+                <span class="text-xs text-gray-400 font-medium">No email alerts</span>
               </div>
             </div>
           </div>
 
-          <!-- Limite transazioni giornaliere -->
+          <!-- Daily transaction limit -->
           <div class="space-y-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
             <div class="flex flex-col gap-0.5 mb-2">
-              <span class="text-sm font-semibold text-gray-800">Limite Transazioni Giornaliere</span>
-              <span class="text-xs text-gray-500">Imposta una soglia massima giornaliera di operazioni autorizzate</span>
+              <span class="text-sm font-semibold text-gray-800">Daily Transaction Limit</span>
+              <span class="text-xs text-gray-500">Set a maximum daily threshold of authorized operations</span>
             </div>
             <div class="flex items-center gap-4">
               <!-- Custom counter with spin buttons on the right -->
@@ -196,7 +196,7 @@
                   </button>
                 </div>
               </div>
-              <span class="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-1 rounded">Consigliato: 20</span>
+              <span class="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-1 rounded">Recommended: 20</span>
             </div>
           </div>
         </div>

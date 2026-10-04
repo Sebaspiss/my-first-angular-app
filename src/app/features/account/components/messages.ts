@@ -18,24 +18,24 @@ export class Messages {
   data = [
     {
       id: '1',
-      title: 'Benvenuto!',
-      preview: 'Grazie per esserti registrato alla piattaforma di trading fintech. Siamo entusiasti di averti a bordo.\n\nEsplora la tua dashboard per iniziare ad analizzare il mercato in tempo reale.',
-      date: '30/05/2026',
-      status: 'nuovo'
+      title: 'Welcome!',
+      preview: 'Thank you for registering on our fintech trading platform. We are excited to have you on board.\n\nExplore your dashboard to start analyzing the market in real time.',
+      date: '05/30/2026',
+      status: 'new'
     },
     {
       id: '2',
-      title: 'Aggiornamento sistema',
-      preview: 'Abbiamo rilasciato nuove funzionalità per migliorare la sicurezza e la velocità delle transazioni.\n\nControlla le impostazioni per gestire le notifiche personalizzate.',
-      date: '28/05/2026',
-      status: 'letto'
+      title: 'System Update',
+      preview: 'We have released new features to improve transaction security and speed.\n\nCheck your settings to manage customized notifications.',
+      date: '05/28/2026',
+      status: 'read'
     },
     {
       id: '3',
-      title: 'Promemoria',
-      preview: 'Ricordati di completare il caricamento del tuo documento d\'identità nella sezione anagrafica per sbloccare tutti i limiti operativi dell\'account.',
-      date: '25/05/2026',
-      status: 'letto'
+      title: 'Reminder',
+      preview: 'Remember to complete uploading your identity document in the profile section to unlock all account trading limits.',
+      date: '05/25/2026',
+      status: 'read'
     }
   ];
   
@@ -44,21 +44,21 @@ export class Messages {
   }
 
   get isNewMessage(): boolean {
-    return this.selectedMessage.status === 'nuovo'
+    return this.selectedMessage?.status === 'new';
   }
 
   get isReadMessage(): boolean {
-    return this.selectedMessage.status === 'letto'
+    return this.selectedMessage?.status === 'read';
   }
 
   messageSeverity(status: string): any {
-    return status === 'nuovo' ? 'danger' : 'success'
+    return status === 'new' ? 'danger' : 'success';
   }
 
   openMessage(msg: any) {
     this.selectedMessage = msg;
-    if (msg.status === 'nuovo') {
-      msg.status = 'letto';
+    if (msg.status === 'new') {
+      msg.status = 'read';
     }
   }
 

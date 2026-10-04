@@ -16,9 +16,9 @@ export interface Currency {
 })
 export class SettingsService {
     languages: Language[] = [
-        { label: 'Italiano', code: 'it' },
+        { label: 'Italian', code: 'it' },
         { label: 'English', code: 'en' },
-        { label: 'Español', code: 'es' }
+        { label: 'Spanish', code: 'es' }
     ];
 
     currencies: Currency[] = [
@@ -27,7 +27,7 @@ export class SettingsService {
         { label: 'Pound', code: 'GBP', symbol: '£' }
     ];
 
-    language = signal<Language>(this.languages[0]);
+    language = signal<Language>(this.languages[1]);
     currency = signal<Currency>(this.currencies[0]);
     timeFormat = signal<'12h' | '24h'>('24h');
     emailNotifications = signal<boolean>(true);
