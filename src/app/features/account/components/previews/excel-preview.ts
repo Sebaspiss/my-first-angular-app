@@ -1,15 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
 import { ExcelPreviewData } from '../../models/document.model';
 
 @Component({
   selector: 'doc-excel-preview',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: 'excel-preview.html'
 })
 export class DocExcelPreview {
-  @Input({ required: true }) data!: ExcelPreviewData;
+  readonly data = input.required<ExcelPreviewData>();
 
   formatCurrency(value: number): string {
     return `€ ${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;

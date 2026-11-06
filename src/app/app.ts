@@ -1,6 +1,5 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { Layout } from './layout/layout';
-import { PrimeNG } from 'primeng/config';
+import { Component } from '@angular/core';
+import { Layout } from '@/layout/layout';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,4 @@ import { PrimeNG } from 'primeng/config';
   template: '<app-layout></app-layout>'
 })
 
-export class App implements OnInit {
-  protected readonly title = signal('dashboard-fintech');
-
-  constructor(private primeng: PrimeNG) {}
-
-  ngOnInit(): void {
-    this.primeng.ripple.set(true);
-  }  
-}
+export class App {}

@@ -33,7 +33,8 @@ export const appConfig: ApplicationConfig = {
 
     // Prime NG
     providePrimeNG({
-    theme: {
+      ripple: true,
+      theme: {
         preset: BlueAura,
         options: {
           darkModeSelector: false

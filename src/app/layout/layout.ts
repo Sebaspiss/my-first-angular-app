@@ -1,11 +1,10 @@
 import { Component } from "@angular/core";
-import { SideBar } from "./sidebar/sidebar";
-import { TopBar } from "./topbar/topbar";
+import { SideBar } from "@/layout/sidebar/sidebar";
+import { TopBar } from "@/layout/topbar/topbar";
 import { RouterOutlet } from "@angular/router";
 
 @Component({
     selector: 'app-layout',
-    standalone: true,
     templateUrl: './layout.html',
     imports: [SideBar, TopBar, RouterOutlet]
 })

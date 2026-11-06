@@ -1,6 +1,12 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { SettingsService } from './settings.service';
-import { PRODUCT_STATUS, ProductStatus } from '../../features/trade/trade.constants';
+
+export const PRODUCT_STATUS = {
+  TRADABLE: 'TRADABLE',
+  SUSPENDED: 'SUSPENDED'
+} as const;
+
+export type ProductStatus = typeof PRODUCT_STATUS[keyof typeof PRODUCT_STATUS];
 
 export interface Product {
     id: number;

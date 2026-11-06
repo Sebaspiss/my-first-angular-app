@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { InputTextModule } from 'primeng/inputtext';
+import { IconField } from 'primeng/iconfield';
+import { InputIcon } from 'primeng/inputicon';
+import { InputText } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-topbar',
     templateUrl: './topbar.html',
-    standalone: true,
     imports: [
         AvatarModule,
-        IconFieldModule,
-        InputIconModule,
-        InputTextModule
+        IconField,
+        InputIcon,
+        InputText
     ]
 })
 export class TopBar {}

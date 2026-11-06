@@ -1,41 +1,25 @@
 import { Routes } from '@angular/router';
-import { Account } from './features/account/account';
-import { Dashboard } from './features/dashboard/dashboard';
-import { Settings } from './features/settings/settings';
-import { Trade } from './features/trade/trade';
-import { UserInfo } from './features/account/components/userInfo';
-import { Messages } from './features/account/components/messages';
-import { Documents } from './features/account/components/documents';
 
 export const routes: Routes = [
-    {
-        path: 'dashboard',
-        title: "Dashboard",
-        component: Dashboard
-    },
-    {
-        path: 'trade',
-        title: "Trade",
-        component: Trade
-    },
-    {
-        path: 'account',
-        title: "Account",
-        component: Account,
-        children: [
-            { path: '', redirectTo: 'userInfo', pathMatch: 'full' },
-            { path: 'userInfo', component: UserInfo },
-            { path: 'messages', component: Messages },
-            { path: 'documents', component: Documents },
-        ]
-    },
-    {
-        path: 'settings',
-        title: "Settings",
-        component: Settings
-    },
-    {
-        path: '**',
-        component: Dashboard
-    }
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    title: 'Dashboard',
+    loadComponent: () => import('./features/dashboard/dashboard').then(m => m.Dashboard)
+  },
+  {
+    path: 'trade',
+    title: 'Trade',
+    loadComponent: () => import('./features/trade/trade').then(m => m.Trade)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./features/account/account.routes').then(m => m.ACCOUNT_ROUTES)
+  },
+  {
+    path: 'settings',
+    title: 'Settings',
+    loadComponent: () => import('./features/settings/settings').then(m => m.Settings)
+  },
+  { path: '**', redirectTo: 'dashboard' }
 ];

@@ -1,13 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
 import { ImagePreviewData } from '../../models/document.model';
 
 @Component({
   selector: 'doc-image-preview',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: 'image-preview.html'
 })
 export class DocImagePreview {
-  @Input({ required: true }) data!: ImagePreviewData;
+  readonly data = input.required<ImagePreviewData>();
 }

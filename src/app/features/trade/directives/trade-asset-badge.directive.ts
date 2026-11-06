@@ -1,25 +1,36 @@
-import { Directive, input, computed } from '@angular/core';
+import { Directive, computed, input } from '@angular/core';
+
+const BASE_CLASSES =
+    'w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs uppercase shadow-sm flex-shrink-0';
+
+const DEFAULT_STYLE = 'bg-gray-100 text-gray-600';
+
+/** Chiavi normalizzate (trim + lowercase) → classi colore. */
+const CATEGORY_STYLES = new Map<string, string>([
+    // Crypto
+    ['crypto', 'bg-orange-100 text-orange-600'],
+    ['criptovalute', 'bg-orange-100 text-orange-600'],
+    // Commodities
+    ['commodities', 'bg-amber-100 text-amber-600'],
+    ['commodity', 'bg-amber-100 text-amber-600'],
+    ['materie prime', 'bg-amber-100 text-amber-600'],
+    // Stocks
+    ['stocks', 'bg-blue-100 text-blue-600'],
+    ['stock', 'bg-blue-100 text-blue-600'],
+    ['azionario', 'bg-blue-100 text-blue-600'],
+]);
 
 @Directive({
     selector: '[tradeAssetBadge]',
-    standalone: true,
     host: {
-        'class': 'w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs uppercase shadow-sm flex-shrink-0',
-        '[class.bg-orange-100]': 'isCrypto()',
-        '[class.text-orange-600]': 'isCrypto()',
-        '[class.bg-amber-100]': 'isCommodity()',
-        '[class.text-amber-600]': 'isCommodity()',
-        '[class.bg-blue-100]': 'isStock()',
-        '[class.text-blue-600]': 'isStock()',
-        '[class.bg-gray-100]': 'isDefault()',
-        '[class.text-gray-600]': 'isDefault()'
-    }
+        '[class]': 'badgeClasses()',
+    },
 })
 export class TradeAssetBadgeDirective {
     readonly category = input.required<string>({ alias: 'tradeAssetBadge' });
 
-    readonly isCrypto = computed(() => ['Crypto', 'Criptovalute'].includes(this.category()));
-    readonly isCommodity = computed(() => ['Commodities', 'Commodity', 'Materie Prime'].includes(this.category()));
-    readonly isStock = computed(() => ['Stocks', 'Stock', 'Azionario'].includes(this.category()));
-    readonly isDefault = computed(() => !this.isCrypto() && !this.isCommodity() && !this.isStock());
+    protected readonly badgeClasses = computed(() => {
+        const key = (this.category() ?? '').trim().toLowerCase();
+        return `${BASE_CLASSES} ${CATEGORY_STYLES.get(key) ?? DEFAULT_STYLE}`;
+    });
 }

@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CardModule } from 'primeng/card';
-import { BadgeModule } from 'primeng/badge';
-import { DividerModule } from 'primeng/divider';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
+import { Card } from 'primeng/card';
+import { Badge } from 'primeng/badge';
+import { Divider } from 'primeng/divider';
+import { Dialog } from 'primeng/dialog';
+import { ButtonDirective } from 'primeng/button';
 
 @Component({
   selector: 'messages',
-  standalone: true,
-  imports: [CommonModule, CardModule, BadgeModule, DividerModule, DialogModule, ButtonModule],
+  imports: [
+    Card,
+    Badge,
+    Divider,
+    Dialog,
+    ButtonDirective
+  ],
   templateUrl: './messages.html'
 })
 export class Messages {

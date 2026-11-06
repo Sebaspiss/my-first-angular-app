@@ -1,18 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CardModule } from 'primeng/card';
-import { RadioButtonModule } from 'primeng/radiobutton';
+import { Card } from 'primeng/card';
+import { RadioButton } from 'primeng/radiobutton';
 import { FormsModule } from '@angular/forms';
-import { SettingsService } from '../../core/services/settings.service';
+import { SettingsService } from '@coreServices/settings.service';
 
 @Component({
   selector: 'settings',
-  standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
-    CardModule,
-    RadioButtonModule
+    Card,
+    RadioButton
   ],
   templateUrl: './settings.html'
 })
@@ -22,6 +19,7 @@ export class Settings {
 
   incrementTransactions() {
     const val = this.settingsService.maxDailyTransactions();
+    
     if (val < 100) {
       this.settingsService.maxDailyTransactions.set(val + 1);
     }
@@ -29,6 +27,7 @@ export class Settings {
 
   decrementTransactions() {
     const val = this.settingsService.maxDailyTransactions();
+    
     if (val > 1) {
       this.settingsService.maxDailyTransactions.set(val - 1);
     }

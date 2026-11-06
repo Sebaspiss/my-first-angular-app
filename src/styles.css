@@ -9,13 +9,3 @@ html, body {
   margin: 0;
   padding: 0;
 }
-
-/* Custom form label color overrides */
-form label {
-  color: #000000 !important; /* Pure black */
-}
-
-.p-dark form label,
-.dark form label {
-  color: #ffffff !important; /* Pure white in dark mode */
-}

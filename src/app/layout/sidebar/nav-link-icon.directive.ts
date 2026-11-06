@@ -3,7 +3,6 @@ import { RouterLinkActive } from '@angular/router';
 
 @Directive({
     selector: '[appNavLinkIcon]',
-    standalone: true,
     host: {
         'class': 'text-base transition',
         '[class.!text-blue-600]': 'isActive',

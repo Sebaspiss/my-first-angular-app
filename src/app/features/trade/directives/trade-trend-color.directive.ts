@@ -2,7 +2,6 @@ import { Directive, input, computed } from '@angular/core';
 
 @Directive({
     selector: '[tradeTrendColor]',
-    standalone: true,
     host: {
         'class': 'font-semibold',
         '[class.text-green-600]': 'isPositive()',

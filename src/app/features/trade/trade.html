@@ -79,14 +79,16 @@
                   icon="pi pi-arrow-up" 
                   severity="success" 
                   class="p-button-sm cursor-pointer"
-                  [disabled]="product.status === PRODUCT_STATUS.SUSPENDED">
+                  [disabled]="product.status === PRODUCT_STATUS.SUSPENDED"
+                  (onClick)="openOrder(product, 'buy')">
                 </p-button>
                 <p-button 
                   label="Sell" 
                   icon="pi pi-arrow-down" 
                   severity="danger" 
                   class="p-button-outlined p-button-sm cursor-pointer"
-                  [disabled]="product.status === PRODUCT_STATUS.SUSPENDED">
+                  [disabled]="!canSell(product)"
+                  (onClick)="openOrder(product, 'sell')">
                 </p-button>
               </div>
             </td>
@@ -95,4 +97,67 @@
       </p-table>
     </div>
   </p-card>
+
+  <!-- Buy / Sell Order Dialog -->
+  <p-dialog
+    [header]="(isBuy() ? 'Buy ' : 'Sell ') + (selectedProduct()?.name ?? '')"
+    [visible]="isDialogVisible()"
+    (visibleChange)="closeOrder()"
+    [modal]="true"
+    [style]="{ width: '420px' }"
+    [draggable]="false"
+    [resizable]="false">
+
+    @if (selectedProduct(); as product) {
+      <div class="space-y-4">
+        <dl class="grid grid-cols-2 gap-2 text-sm">
+          <dt class="text-gray-500">Price</dt>
+          <dd class="text-right font-bold text-gray-900">{{ product.formattedPrice }}</dd>
+          <dt class="text-gray-500">Available Cash</dt>
+          <dd class="text-right font-bold text-gray-900">{{ portfolioService.formattedAvailableCash() }}</dd>
+          <dt class="text-gray-500">Held</dt>
+          <dd class="text-right font-bold text-gray-900">{{ heldQuantity() }} {{ product.symbol }}</dd>
+        </dl>
+
+        <div class="flex flex-col gap-1">
+          <label for="trade-qty" class="text-xs font-bold uppercase tracking-wider text-gray-500">Quantity</label>
+          <div class="flex gap-2">
+            <p-inputNumber
+              inputId="trade-qty"
+              class="flex-1"
+              [ngModel]="quantity()"
+              (ngModelChange)="quantity.set($event ?? 0)"
+              [min]="0"
+              [minFractionDigits]="0"
+              [maxFractionDigits]="4"
+              [showButtons]="true">
+            </p-inputNumber>
+            <p-button label="Max" severity="secondary" class="p-button-sm cursor-pointer" (onClick)="setMaxQuantity()"></p-button>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center text-sm border-t border-gray-200 pt-3">
+          <span class="text-gray-500">{{ isBuy() ? 'Total cost' : 'Total proceeds' }}</span>
+          <span class="font-bold text-gray-900 text-base">{{ formattedTotal() }}</span>
+        </div>
+
+        @if (orderError(); as error) {
+          <p class="text-xs text-red-600">{{ error }}</p>
+        }
+      </div>
+    }
+
+    <ng-template #footer>
+      <div class="flex justify-end gap-2 w-full pt-2">
+        <p-button label="Cancel" severity="secondary" class="p-button-outlined p-button-sm cursor-pointer" (onClick)="closeOrder()"></p-button>
+        <p-button
+          [label]="isBuy() ? 'Confirm Buy' : 'Confirm Sell'"
+          [severity]="isBuy() ? 'success' : 'danger'"
+          class="p-button-sm cursor-pointer"
+          [disabled]="orderError() !== null"
+          (onClick)="confirmOrder()">
+        </p-button>
+      </div>
+    </ng-template>
+  </p-dialog>
 </section>

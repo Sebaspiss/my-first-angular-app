@@ -106,10 +106,6 @@ export class DocumentService {
     return this.imagePreviewData;
   }
 
-  toggleSelect(doc: DocumentItem): void {
-    doc.selected = !doc.selected;
-  }
-
   selectAll(): void {
     const allSelected = this.documents().every(d => d.selected);
     this.documents().forEach(d => (d.selected = !allSelected));

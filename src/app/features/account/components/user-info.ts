@@ -1,36 +1,34 @@
-import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DividerModule } from 'primeng/divider';
-import { DatePickerModule } from 'primeng/datepicker';
-import { SelectModule  } from 'primeng/select';
-import { InputTextModule } from 'primeng/inputtext';
+import { Component, inject } from "@angular/core";
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Divider } from 'primeng/divider';
+import { DatePicker } from 'primeng/datepicker';
+import { Select  } from 'primeng/select';
+import { InputText } from 'primeng/inputtext';
 import { Button } from "primeng/button";
 
 @Component({
-    selector: 'userInfo',
-    templateUrl: './userInfo.html',
+    selector: 'user-info',
+    templateUrl: './user-info.html',
     imports: [
-      DividerModule,
-      DatePickerModule,
-      SelectModule,
-      InputTextModule,
+      Divider,
+      DatePicker,
+      Select,
+      InputText,
       ReactiveFormsModule,
       Button
     ]
 })
 
 export class UserInfo {
-    anagraficaForm!: FormGroup;
+  private readonly fb = inject(FormBuilder);
 
+  // TODO: SPOSTARE
   generi = [
     { label: 'Male', value: 'M' },
     { label: 'Female', value: 'F' }
   ];
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.anagraficaForm = this.fb.group({
+    readonly anagraficaForm = this.fb.group({
       nome: ['', Validators.required],
       cognome: ['', Validators.required],
       dataNascita: [null, Validators.required],
@@ -42,7 +40,6 @@ export class UserInfo {
       cap: [''],
       provincia: ['']
     });
-  }
 
   onSubmit() {
     if (!this.anagraficaForm.valid) {

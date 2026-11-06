@@ -1,13 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
 import { PdfPreviewData } from '../../models/document.model';
 
 @Component({
   selector: 'doc-pdf-preview',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: 'pdf-preview.html'
 })
 export class DocPdfPreview {
-  @Input({ required: true }) data!: PdfPreviewData;
+  readonly data = input.required<PdfPreviewData>();
 }

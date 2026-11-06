@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CardModule } from 'primeng/card';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ButtonModule } from 'primeng/button';
-import { DividerModule } from 'primeng/divider';
-import { DialogModule } from 'primeng/dialog';
+import { Card } from 'primeng/card';
+import { Checkbox } from 'primeng/checkbox';
+import { ButtonDirective } from 'primeng/button';
+import { Divider } from 'primeng/divider';
+import { Dialog } from 'primeng/dialog';
 import { DocumentService } from '../services/document.service';
 import { DocumentItem } from '../models/document.model';
 import { DocPdfPreview } from './previews/pdf-preview';
@@ -14,21 +13,20 @@ import { DocImagePreview } from './previews/image-preview';
 
 @Component({
   selector: 'documents',
-  standalone: true,
   imports: [
-    CommonModule,
-    CardModule,
-    CheckboxModule,
-    ButtonModule,
-    DividerModule,
+    Card,
+    Checkbox,
+    ButtonDirective,
+    Divider,
     FormsModule,
-    DialogModule,
+    Dialog,
     DocPdfPreview,
     DocExcelPreview,
     DocImagePreview
   ],
   templateUrl: './documents.html'
 })
+
 export class Documents {
   protected documentService = inject(DocumentService);
   selectedDocument: DocumentItem | null = null;
@@ -64,7 +62,9 @@ export class Documents {
   isDownloading = false;
 
   downloadDocument(doc: DocumentItem | null): void {
-    if (!doc || this.isDownloading) return;
+    if (!doc || this.isDownloading)
+      return;
+    
     this.isDownloading = true;
     this.documentService.downloadDocument(doc);
     setTimeout(() => {

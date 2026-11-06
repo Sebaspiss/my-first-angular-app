@@ -8,7 +8,7 @@
           <span class="text-xs text-gray-500">Asset allocation and total value</span>
         </div>
       </div>
-      <span class="text-xs text-gray-400 font-bold text-green-600 bg-green-50 px-2 py-1 rounded">+1.85% today</span>
+      <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">{{ portfolioService.formattedTodayPercentage() }}</span>
     </header>
   </ng-template>
 
@@ -32,13 +32,7 @@
             <!-- Color-coded avatar icon background -->
             <span 
               class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs" aria-hidden="true"
-              [ngClass]="{
-                'bg-orange-100 text-orange-600': asset.symbol === 'BTC',
-                'bg-purple-100 text-purple-600': asset.symbol === 'ETH',
-                'bg-amber-100 text-amber-600': asset.symbol === 'AMZN',
-                'bg-blue-100 text-blue-600': asset.symbol === 'MSFT'
-              }"
-            >
+              [class]="getAssetColor($index)">
               {{ asset.symbol }}
             </span>
             <div class="flex flex-col">
@@ -48,10 +42,7 @@
           </div>
           <div class="text-right">
             <div class="text-sm font-bold text-gray-900">{{ asset.formattedVal }}</div>
-            <span 
-              class="text-[10px] font-medium"
-              [ngClass]="asset.isPositive ? 'text-green-600' : 'text-red-600'"
-            >
+            <span [appPortfolioChange]="asset.isPositive">
               {{ asset.change }}
             </span>
           </div>

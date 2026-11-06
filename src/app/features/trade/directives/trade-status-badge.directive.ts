@@ -1,9 +1,8 @@
 import { Directive, input, computed } from '@angular/core';
-import { PRODUCT_STATUS, ProductStatus } from '../trade.constants';
+import { PRODUCT_STATUS, ProductStatus } from '@coreServices/trade.service';
 
 @Directive({
     selector: '[tradeStatusBadge]',
-    standalone: true,
     host: {
         'class': 'px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border',
         '[class.bg-green-50]': 'isTradable()',
